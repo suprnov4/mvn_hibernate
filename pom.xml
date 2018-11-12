@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.humanbooster.hibernate</groupId>
@@ -11,7 +12,7 @@
 	<properties>
 		<hibernate.version>5.2.7.Final</hibernate.version>
 		<jstl.version>1.2</jstl.version>
-		<mysql.connector.version>5.1.39</mysql.connector.version>
+		<mysql.connector.version>5.1.45</mysql.connector.version>
 	</properties>
 
 	<repositories>
@@ -84,7 +85,12 @@
 			<artifactId>el-api</artifactId>
 			<version>2.2</version>
 		</dependency>
+		
+		
 	</dependencies>
+
+	
+
 
 	<build>
 		<finalName>MavenHibernate</finalName>

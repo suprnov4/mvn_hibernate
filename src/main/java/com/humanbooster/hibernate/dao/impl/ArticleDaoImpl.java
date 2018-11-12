@@ -11,6 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.humanbooster.hibernate.business.Article;
+import com.humanbooster.hibernate.business.Categorie;
 import com.humanbooster.hibernate.dao.ArticleDao;
 
 @SuppressWarnings("unchecked")
@@ -22,7 +23,62 @@ public class ArticleDaoImpl implements ArticleDao {
 	public List<Article> findAll() {
 		return session.createQuery("from Article").getResultList();
 	}
-
+	
+	public Article createArticle (Article article) {
+		session.save(article);
+		return article;
+	}
+	
+	
+	public Article findByDesignation (String designation) {
+		return (Article) session.createQuery("from Article where designation = :designation")
+				.setParameter("designation",  designation)
+				.getSingleResult();
+	}
+	
+	public Article findById (int idArticle) {
+		return (Article) session.createQuery("from Article where idArticle = :idArticle")
+				.setParameter("idArticle",  idArticle)
+				.getSingleResult();
+	}
+	
+	public void updateArticle (Article article) {
+		session.update(article);
+	}
+	
+	public void deleteArticle (int idArticle) {
+		session.createQuery("Delete from Article where idArticle = :idArticle")
+				.setParameter("idArticle", idArticle)
+				.executeUpdate();
+	}
+	
+	public void deleteAll() {
+		session.createQuery("truncate table Article").executeUpdate();
+	}
+	
+	public List<Article> searchByDesignation (String designation) {
+		return session.createQuery("from Article where designation = :designation")
+				.setParameter("designation", designation.toLowerCase())
+				.getResultList();
+	}
+	
+	public List<Article> findByCategorie (Categorie categorie) {
+		return session.createQuery("from Article where categorie = :categorie")
+				.setParameter("categorie", categorie)
+				.getResultList();
+	}
+	
+	
+	public List<Article> findAllOrderedByName() {
+		return session.createQuery("from Article order by article.designation").getResultList();
+	}
+	
+	public void findPage() {
+		//TODO
+	}
+	
+	
+	
 	public Session openCurrentSession() {
 		session = getSessionFactory().openSession();
 		return session;
